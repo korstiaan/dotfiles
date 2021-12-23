@@ -1,0 +1,9 @@
+[".local/antigen.zsh"]
+    type = "file"
+    url = "https://raw.githubusercontent.com/zsh-users/antigen/master/bin/antigen.zsh"
+    refreshPeriod = "168h"
+[".local/fzf"]
+    type = "archive"
+    url = "https://github.com/junegunn/fzf/archive/refs/tags/0.28.0.tar.gz"
+    exact = true
+    stripComponents = 1

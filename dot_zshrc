@@ -1,0 +1,12 @@
+DISABLE_AUTO_UPDATE="true"
+POWERLEVEL9K_DISABLE_CONFIGURATION_WIZARD=true
+source "$HOME/.local/antigen.zsh"
+
+antigen use oh-my-zsh
+antigen bundle zsh-users/zsh-syntax-highlighting
+antigen bundle robbyrussell/oh-my-zsh plugins/z
+antigen theme romkatv/powerlevel10k
+antigen apply
+
+source "$HOME/.fzf.zsh"
+source "$HOME/.p10k.zsh"
