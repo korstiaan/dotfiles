@@ -1,9 +1,24 @@
 [user]
     name = Korstiaan de Ridder
-    email = {{- .email }}
+    email = {{ .email -}}
+{{- if not .shared_server }}
+    signingkey = {{ .gpg_commit_signing_key }}
+{{- end }}
 [core]
     excludesfile = ~/.gitignore_global
 [alias]
     st = status
 [github]
     user = korstiaan
+{{ if not .shared_server -}}
+[commit]
+    gpgsign = true
+[tag]
+    gpgsign = true
+[gpg]
+{{- if eq .chezmoi.os "linux" }}
+    program = gpg2
+{{- else if eq .chezmoi.os "darwin" }}
+    program = gpg
+{{- end }}
+{{- end }}

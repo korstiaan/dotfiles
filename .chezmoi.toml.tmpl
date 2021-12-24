@@ -1,3 +1,12 @@
 {{- $email := promptString "email" -}}
+{{- $sharedServer := promptBool "shared machine" -}}
+
+{{- $gpgCommitSigningKey := "" -}}
+
+{{- if not $sharedServer -}}
+    {{- $gpgCommitSigningKey = promptString "gpg commmit signing key" -}}
+{{- end -}}
 [data]
     email = {{ $email | quote }}
+    shared_server = {{ $sharedServer }}
+    gpg_commit_signing_key = {{ $gpgCommitSigningKey | quote }}
