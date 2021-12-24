@@ -22,5 +22,10 @@ antigen bundle robbyrussell/oh-my-zsh plugins/z
 antigen theme romkatv/powerlevel10k
 antigen apply
 
+if [[ -n $SSH_CONNECTION ]]; then
+  source "$HOME/.p10k.remote.zsh"
+else
+  source "$HOME/.p10k.local.zsh"
+fi
+
 source "$HOME/.fzf.zsh"
-source "$HOME/.p10k.zsh"
