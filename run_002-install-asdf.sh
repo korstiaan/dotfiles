@@ -23,6 +23,7 @@ install_asdf_plugin kubectl
 install_asdf_plugin java
 install_asdf_plugin awscli
 install_asdf_plugin golang
+install_asdf_plugin helm
 
 asdf plugin update --all
 asdf install
