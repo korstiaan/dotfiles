@@ -1,0 +1,10 @@
+#!/bin/sh
+set -euo pipefail
+{{ if eq .chezmoi.os "darwin" }}
+if ! command -v brew >/dev/null 2>&1; then
+  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
+fi
+
+brew bundle install --global --no-lock --no-upgrade
+
+{{ end }}
