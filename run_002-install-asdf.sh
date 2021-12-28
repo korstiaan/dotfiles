@@ -3,7 +3,18 @@ set -euo pipefail
 install_asdf_plugin() {
   if ! asdf plugin list | grep -q "^$1$"; then
     asdf plugin add $1
+  else
+    asdf plugin update $1
   fi
+
+  local version=$2
+
+  if [ $version = 'latest' ]; then
+    version=$(asdf latest $1)
+  fi
+
+  asdf install $1 $version
+  asdf global $1 $version
 }
 
 ASDF_DIR="$HOME/.asdf"
@@ -16,14 +27,11 @@ fi
 set +u;. $ASDF_DIR/asdf.sh; set -u
 asdf update
 
-install_asdf_plugin ruby
-install_asdf_plugin nodejs
-install_asdf_plugin python
-install_asdf_plugin kubectl
-install_asdf_plugin java
-install_asdf_plugin awscli
-install_asdf_plugin golang
-install_asdf_plugin helm
-
-asdf plugin update --all
-asdf install
+install_asdf_plugin ruby latest
+install_asdf_plugin nodejs latest
+install_asdf_plugin python latest
+install_asdf_plugin kubectl latest
+install_asdf_plugin java openjdk-17.0.1
+install_asdf_plugin awscli latest
+install_asdf_plugin golang latest
+install_asdf_plugin helm latest
