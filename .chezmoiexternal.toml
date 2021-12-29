@@ -4,6 +4,13 @@
     refreshPeriod = "168h"
 [".local/fzf"]
     type = "archive"
-    url = "https://github.com/junegunn/fzf/archive/refs/tags/0.28.0.tar.gz"
+    url = "https://github.com/junegunn/fzf/archive/master.tar.gz"
     exact = true
+    stripComponents = 1
+    refreshPeriod = "168h"
+{{- $asdfTags := output "curl" "-s" "https://api.github.com/repos/asdf-vm/asdf/tags?per_page=1" -}}
+{{- $asdfUrl := (first (fromJson $asdfTags)).tarball_url }}
+[".asdf"]
+    type = "archive"
+    url = "{{ $asdfUrl }}"
     stripComponents = 1

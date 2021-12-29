@@ -23,20 +23,9 @@ antigen bundle z
 antigen theme romkatv/powerlevel10k
 antigen apply
 
-if [[ -n $SSH_CONNECTION ]]; then
-  source "$HOME/.p10k.remote.zsh"
-else
-  source "$HOME/.p10k.local.zsh"
-fi
-
-# fzf init
-source "$HOME/.fzf.zsh"
-
-# asdf init & autocomplete
-. $HOME/.asdf/asdf.sh
-
-fpath=(${ASDF_DIR}/completions $fpath)
-autoload -Uz compinit && compinit
+. "$HOME/.local/scripts/init_p10k.zsh"
+. "$HOME/.local/scripts/init_fzf.zsh"
+. "$HOME/.local/scripts/init_asdf.zsh"
 
 # kubectl autocomplete
 source <(kubectl completion zsh)
