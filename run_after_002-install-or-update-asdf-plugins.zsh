@@ -1,7 +1,7 @@
 #!/bin/zsh
 set -eo pipefail
 
-. "$HOME/.local/scripts/init_asdf.sh"
+. "$HOME/.local/scripts/init_asdf.zsh"
 
 set -u
 
