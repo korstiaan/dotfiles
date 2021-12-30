@@ -1,12 +1,37 @@
-{{- $email := promptString "email" -}}
-{{- $sharedServer := promptBool "shared machine" -}}
+{{ $email := env "DOTFILES_EMAIL" }}
+{{ if (and stdinIsATTY (empty $email)) }}
+    {{ $email = promptString "email" }}
+{{ end }}
 
-{{- $gpgCommitSigningKey := "" -}}
+{{ if empty $email }}
+    {{ writeToStdout "Missing e-mail - either set DOTFILES_EMAIL or use the prompt\n" }}
+    {{ exit 1 }}
+{{ end }}
 
-{{- if not $sharedServer -}}
-    {{- $gpgCommitSigningKey = promptString "gpg commmit signing key" -}}
-{{- end -}}
+{{ $sharedServer := true }}
+
+{{ if empty (env "DOTFILES_SHARED_SERVER") | not }}
+    {{ $sharedServer = not (eq (env "DOTFILES_SHARED_SERVER") "n"  "no" "false" "f" "0") }}
+{{ else if stdinIsATTY }}
+    {{ $sharedServer = promptBool "shared server" }}
+{{ else }}
+    {{ writeToStdout "Missing gpg signing key - either set DOTFILES_SHARED_SERVER or use the prompt\n" }}
+    {{ exit 1 }}
+{{ end }}
+
+
+{{ $gpgCommitSigningKey := "" }}
+
+{{ if not $sharedServer }}
+    {{ $gpgCommitSigningKey = env "DOTFILES_GPG_SIGNING_KEY" }}
+    {{ if (and stdinIsATTY (empty $gpgCommitSigningKey)) }}
+        {{ $gpgCommitSigningKey = promptString "gpg commmit signing key" }}
+    {{ end }}
+{{ end }}
+
 [data]
     email = {{ $email | quote }}
     shared_server = {{ $sharedServer }}
+{{ if not $sharedServer }}
     gpg_commit_signing_key = {{ $gpgCommitSigningKey | quote }}
+{{ end }}
