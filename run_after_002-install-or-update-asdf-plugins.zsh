@@ -5,21 +5,25 @@ set -eo pipefail
 
 set -u
 
+_asdf_with_env() {
+  GITHUB_API_TOKEN=${GITHUB_API_TOKEN:-${GITHUB_TOKEN:+$GITHUB_TOKEN}} asdf "$@"
+}
+
 install_asdf_plugin() {
   if ! asdf plugin list | grep -q "^$1$"; then
-    asdf plugin add $1
+    _asdf_with_env plugin add $1
   else
-    asdf plugin update $1
+    _asdf_with_env plugin update $1
   fi
 
   local version=$2
 
   if [ $version = 'latest' ]; then
-    version=$(asdf latest $1)
+    version=$(_asdf_with_env latest $1)
   fi
 
-  asdf install $1 $version
-  asdf global $1 $version
+  _asdf_with_env install $1 $version
+  _asdf_with_env global $1 $version
 }
 
 install_asdf_plugin ruby latest
