@@ -7,11 +7,13 @@ jobs:
     runs-on: ${{ matrix.os }}
     env:
       DOTFILES_EMAIL: info@example.com
-      DOTFILES_SHARED_SERVER: 'y'
+      DOTFILES_SHARED_SERVER: ${{ matrix.shared }}
+      DOTFILES_GPG_SIGNING_KEY: foo
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     strategy:
       matrix:
         os: [ubuntu-latest, macOS-latest]
+        shared: ["y", "n"]
     steps:
     - uses: actions/checkout@v1
     - name: Install dependencies ubuntu
