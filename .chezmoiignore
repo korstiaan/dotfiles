@@ -1,4 +1,4 @@
-.local/fzf/bin/fzf
-LICENSE
-README.md
-.bin
+/.local/fzf/bin/fzf
+/LICENSE
+/README.md
+/.bin
