@@ -5,11 +5,6 @@ on: [push, pull_request]
 jobs:
   install:
     runs-on: ${{ matrix.os }}
-    env:
-      DOTFILES_EMAIL: info@example.com
-      DOTFILES_SHARED_SERVER: ${{ matrix.shared }}
-      DOTFILES_GPG_SIGNING_KEY: foo
-      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     strategy:
       matrix:
         os: [ubuntu-latest, macOS-latest]
@@ -25,5 +20,10 @@ jobs:
       run: |
         sh -c "$(curl -fsLS git.io/chezmoi)"
     - name: Install dotfiles
+      env:
+        DOTFILES_EMAIL: info@example.com
+        DOTFILES_SHARED_SERVER: ${{ matrix.shared }}
+        DOTFILES_GPG_SIGNING_KEY: foo
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
         ./bin/chezmoi init --apply --source=.
