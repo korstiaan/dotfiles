@@ -3,7 +3,7 @@ name: CI
 on: [push, pull_request]
 
 jobs:
-  build:
+  install:
     runs-on: ${{ matrix.os }}
     env:
       DOTFILES_EMAIL: info@example.com
@@ -26,4 +26,4 @@ jobs:
         sh -c "$(curl -fsLS git.io/chezmoi)"
     - name: Install dotfiles
       run: |
-        ./bin/chezmoi  init --apply --source=.
+        ./bin/chezmoi init --apply --source=.
