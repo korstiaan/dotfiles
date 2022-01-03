@@ -12,6 +12,10 @@ export LC_ALL=en_US.UTF-8
 
 export EDITOR=nvim
 
+{{ if eq .chezmoi.os "darwin" }}
+fpath=("$(brew --prefix)/share/zsh/site-functions" $fpath)
+{{ end }}
+
 . "$HOME/.local/scripts/init_fzf.zsh"
 . "$HOME/.local/scripts/init_asdf.zsh"
 
