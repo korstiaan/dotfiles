@@ -1,0 +1,9 @@
+#!/bin/sh
+set -euo pipefail
+{{ if eq .chezmoi.os "darwin" }}
+chflags nohidden "${HOME}/Library"
+
+defaults write com.googlecode.iterm2.plist PrefsCustomFolder -string "$HOME/.config/iterm2"
+defaults write com.googlecode.iterm2.plist LoadPrefsFromCustomFolder -boolean true
+
+{{ end }}
