@@ -17,8 +17,6 @@ source "${HOME}/.local/share/zinit/zinit.git/zinit.zsh"
 zinit snippet OMZL::theme-and-appearance.zsh
 zinit snippet OMZL::history.zsh
 
-zinit light zdharma-continuum/fast-syntax-highlighting
-
 zinit ice depth=1
 zinit light romkatv/powerlevel10k
 
@@ -36,6 +34,8 @@ zinit light rupa/z
 
 zinit pack"default+keys" for fzf
 
+zinit light Aloxaf/fzf-tab
+
 zinit light-mode lucid wait nocompile for \
   id-as"kubectl_completion" \
   as"completion" \
@@ -43,6 +43,8 @@ zinit light-mode lucid wait nocompile for \
   atpull"%atclone" \
   run-atpull \
   zdharma-continuum/null
+
+zinit light zdharma-continuum/fast-syntax-highlighting
 
 autoload -Uz compinit
 compinit
