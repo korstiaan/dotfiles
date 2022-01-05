@@ -9,29 +9,42 @@ export DOTNET_CLI_TELEMETRY_OPTOUT=1
 
 export LC_CTYPE=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
-export ANTIGEN_CACHE=false
 
 export EDITOR=nvim
 
+source "${HOME}/.local/share/zinit/zinit.git/zinit.zsh"
+
+zinit snippet OMZL::git.zsh
+zinit light zsh-users/zsh-syntax-highlighting
+
+zinit ice depth=1
+zinit light romkatv/powerlevel10k
+
+zinit snippet "$HOME/.local/scripts/init_asdf.zsh"
+
+zinit ice as"completion"
+zinit snippet "$HOME/.asdf/completions/_asdf"
+
 {{ if eq .chezmoi.os "darwin" }}
-fpath=("$(brew --prefix)/share/zsh/site-functions" $fpath)
+zinit ice as"completion"
+zinit snippet "$(brew --prefix)/share/zsh/site-functions/_brew"
 {{ end }}
 
-. "$HOME/.local/scripts/init_fzf.zsh"
-. "$HOME/.local/scripts/init_asdf.zsh"
+zinit light rupa/z
 
-zstyle ':omz:update' mode disabled
+zinit pack"default+keys" for fzf
 
-source "$HOME/.local/antigen.zsh"
+zinit light-mode lucid wait nocompile for \
+  id-as"kubectl_completion" \
+  as"completion" \
+  atclone"kubectl completion zsh > _kubectl" \
+  atpull"%atclone" \
+  run-atpull \
+  zdharma-continuum/null
 
-antigen use oh-my-zsh
-antigen bundle zsh-users/zsh-syntax-highlighting
-antigen bundle z
+autoload -Uz compinit
+compinit
 
-antigen theme romkatv/powerlevel10k
-antigen apply
+zinit cdreplay -q
 
 . "$HOME/.local/scripts/init_p10k.zsh"
-
-# kubectl autocomplete
-source <(kubectl completion zsh)
