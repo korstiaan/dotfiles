@@ -1,6 +1,11 @@
-export GPG_TTY=$(tty)
+# shellcheck shell=bash
 
+GPG_TTY=$(tty)
+export GPG_TTY
+
+# shellcheck disable=SC2296
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  # shellcheck source=/dev/null
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
@@ -12,7 +17,8 @@ export LC_ALL=en_US.UTF-8
 
 export EDITOR=nvim
 
-source "${HOME}/.local/share/zinit/zinit.git/zinit.zsh"
+# shellcheck source=/dev/null
+source "$HOME/.local/share/zinit/zinit.git/zinit.zsh"
 
 zinit snippet OMZL::theme-and-appearance.zsh
 zinit snippet OMZL::history.zsh
@@ -51,4 +57,5 @@ compinit
 
 zinit cdreplay -q
 
+# shellcheck source=.local/scripts/init_p10k.zsh
 . "$HOME/.local/scripts/init_p10k.zsh"

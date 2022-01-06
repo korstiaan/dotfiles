@@ -3,7 +3,7 @@ name: CI
 on: [push, pull_request]
 
 jobs:
-  install:
+  ci:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
@@ -15,7 +15,7 @@ jobs:
       if: matrix.os == 'ubuntu-latest'
       run: |
         sudo apt-get update
-        sudo apt-get install -qq -y --no-install-recommends zsh
+        sudo apt-get install -qq -y --no-install-recommends zsh shellcheck
     - name: Install chezmoi
       run: |
         sh -c "$(curl -fsLS git.io/chezmoi)"
@@ -27,3 +27,6 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
         ./bin/chezmoi init --apply --source=.
+    - name:
+      run: |
+        .bin/shellcheck_target.sh
