@@ -18,7 +18,8 @@ jobs:
         sudo apt-get install -qq -y --no-install-recommends zsh shellcheck
     - name: Set zsh as default shell
       run: |
-        sudo chsh -s $(which zsh) $(whoami)
+        sudo chsh -s $(which zsh) root
+        sudo chsh -s $(which zsh) $USERNAME
     - name: Install chezmoi
       run: |
         sh -c "$(curl -fsLS git.io/chezmoi)"
