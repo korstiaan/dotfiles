@@ -1,0 +1,14 @@
+#!/bin/bash
+set -euo pipefail
+
+if [[ "$SHELL" != $(which zsh) ]]; then
+  echo "Please set shell to zsh (hint: sudo chsh $(whoami) -s $(which zsh)"
+  exit 1
+fi
+
+{{ if eq .chezmoi.os "darwin" }}
+if ! command -v brew >/dev/null 2>&1; then
+  echo "Please install brew"
+  exit 1
+fi
+{{ end }}
