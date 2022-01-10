@@ -18,11 +18,13 @@ jobs:
         sudo apt-get install -qq -y --no-install-recommends zsh shellcheck
     - name: Set zsh as default shell
       run: |
+        sudo chsh -s $(which zsh) root
         sudo chsh -s $(which zsh) $(whoami)
     - name: Install chezmoi
       run: |
         sh -c "$(curl -fsLS git.io/chezmoi)"
     - name: Install dotfiles
+      shell: zsh -l {0}
       env:
         DOTFILES_EMAIL: info@example.com
         DOTFILES_SHARED_SERVER: ${{ matrix.shared }}
