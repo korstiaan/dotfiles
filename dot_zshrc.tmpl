@@ -26,6 +26,10 @@ zinit snippet OMZL::history.zsh
 zinit ice depth=1
 zinit light romkatv/powerlevel10k
 
+zinit light zdharma-continuum/zinit-annex-patch-dl
+
+zinit light zdharma-continuum/zinit-annex-bin-gem-node
+
 zinit snippet "$HOME/.local/scripts/init_asdf.zsh"
 
 zinit ice as"completion"
@@ -38,7 +42,7 @@ zinit snippet "$(brew --prefix)/share/zsh/site-functions/_brew"
 
 zinit light rupa/z
 
-zinit pack"default+keys" for fzf
+zinit pack"bgn-binary+keys" for fzf
 
 zinit light Aloxaf/fzf-tab
 
