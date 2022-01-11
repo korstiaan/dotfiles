@@ -5,6 +5,10 @@ set -euo pipefail
 
   export GITHUB_API_TOKEN=${GITHUB_API_TOKEN:-${GITHUB_TOKEN:+$GITHUB_TOKEN}}
 
+  export NODE_BUILD_DEFINITIONS="$HOME/.config/node-build"
+
+  "$HOME/.local/share/node-build-update-defs/bin/nodenv-update-version-defs" -d "$NODE_BUILD_DEFINITIONS"
+
   install_asdf_plugin() {
     if ! asdf plugin list | grep -q "^$1$"; then
       asdf plugin add $1

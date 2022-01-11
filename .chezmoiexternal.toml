@@ -10,3 +10,9 @@
     type = "archive"
     url = "{{ $asdfUrl }}"
     stripComponents = 1
+[".local/share/node-build-update-defs"]
+    type = "archive"
+    url = "https://github.com/nodenv/node-build-update-defs/archive/master.tar.gz"
+    exact = true
+    stripComponents = 1
+    refreshPeriod = "168h"
