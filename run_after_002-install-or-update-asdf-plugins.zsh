@@ -7,7 +7,9 @@ set -euo pipefail
 
   export NODE_BUILD_DEFINITIONS="$HOME/.config/node-build"
 
-  "$HOME/.local/share/node-build-update-defs/bin/nodenv-update-version-defs" -d "$NODE_BUILD_DEFINITIONS"
+  if command -v node >/dev/null 2>&1; then
+    "$HOME/.local/share/node-build-update-defs/bin/nodenv-update-version-defs" -d "$NODE_BUILD_DEFINITIONS"
+  fi
 
   install_asdf_plugin() {
     if ! asdf plugin list | grep -q "^$1$"; then
