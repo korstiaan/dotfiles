@@ -15,7 +15,7 @@ jobs:
       if: matrix.os == 'ubuntu-latest'
       run: |
         sudo apt-get update
-        sudo apt-get install -qq -y --no-install-recommends zsh shellcheck
+        sudo apt-get install -qq -y --no-install-recommends zsh shellcheck locales locales-all
     - name: Set zsh as default shell
       run: |
         sudo chsh -s $(which zsh) root
@@ -32,6 +32,18 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
         ./bin/chezmoi init --apply --source=.
-    - name:
+    - name: Lint
+      shell: zsh -l {0}
       run: |
         .bin/shellcheck_target.sh
+    - name: Smoke test
+      shell: zsh -l {0}
+      run: |
+        cd ~
+        source .zshrc
+        asdf --version
+        z
+        fzf --version
+        node --version
+        go version
+        ruby -v
