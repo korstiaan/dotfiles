@@ -17,6 +17,11 @@ export LC_ALL=en_US.UTF-8
 
 export EDITOR=nvim
 
+bindkey "^A" beginning-of-line
+bindkey "^E" end-of-line
+bindkey '^[[1;9C' forward-word
+bindkey '^[[1;9D' backward-word
+
 # shellcheck source=/dev/null
 source "$HOME/.local/share/zinit/zinit.git/zinit.zsh"
 
