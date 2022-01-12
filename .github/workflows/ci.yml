@@ -28,7 +28,7 @@ jobs:
     - name: Install chezmoi
       run: |
         sh -c "$(curl -fsLS git.io/chezmoi)"
-        sudo ln -s "$(pwd)/bin/chezmoi" /usr/bin/chezmoi
+        sudo ln -s "$(pwd)/bin/chezmoi" /usr/local/bin/chezmoi
     - name: Install dotfiles
       shell: zsh -l {0}
       run: |
