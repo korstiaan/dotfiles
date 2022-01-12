@@ -28,11 +28,15 @@ jobs:
     - name: Install chezmoi
       run: |
         sh -c "$(curl -fsLS git.io/chezmoi)"
-        sudo ln -s "$(pwd)/bin/chezmoi" /usr/local/bin/chezmoi
     - name: Install dotfiles
       shell: zsh -l {0}
       run: |
-        chezmoi init --apply --source=.
+        bin/chezmoi init --apply --source=.
+    - name: Symlink chezmoi
+      run: |
+        if ! command -v chezmoi >/dev/null 2>&1; then
+          sudo ln -s "$(pwd)/bin/chezmoi" /usr/local/bin/chezmoi
+        fi
     - name: Lint
       run: |
         .bin/shellcheck.bash
