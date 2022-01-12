@@ -35,15 +35,9 @@ jobs:
     - name: Lint
       shell: zsh -l {0}
       run: |
-        .bin/shellcheck_target.sh
+        .bin/shellcheck_target.bash
     - name: Smoke test
       shell: zsh -l {0}
       run: |
-        cd ~
-        source .zshrc
-        asdf --version
-        z
-        fzf --version
-        node --version
-        go version
-        ruby -v
+        source ~/.zshrc > /dev/null
+        .bin/smoke_test.bash

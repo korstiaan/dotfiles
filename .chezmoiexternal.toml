@@ -4,7 +4,7 @@
     exact = true
     stripComponents = 1
     refreshPeriod = "168h"
-{{- $asdfTags := output (printf "%s/.bin/asdf_latest_tag.sh" .chezmoi.sourceDir) -}}
+{{- $asdfTags := output (printf "%s/.bin/asdf_latest_tag.bash" .chezmoi.sourceDir) -}}
 {{- $asdfUrl := (first (fromJson $asdfTags)).tarball_url }}
 [".asdf"]
     type = "archive"

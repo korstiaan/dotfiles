@@ -1,4 +1,4 @@
-#!/bin/zsh
+#!/bin/bash
 set -euo pipefail
 (
   set +u;. "$HOME/.local/scripts/init_asdf.zsh"; set -u
