@@ -1,6 +1,7 @@
 #!/bin/zsh
 # shellcheck shell=bash
 
+# shellcheck source=.zshrc
 source "$HOME/.zshrc"
 set -e
 

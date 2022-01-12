@@ -28,10 +28,11 @@ jobs:
     - name: Install chezmoi
       run: |
         sh -c "$(curl -fsLS git.io/chezmoi)"
+        ln -s "$(pwd)/bin/chezmoi" /usr/bin/chezmoi
     - name: Install dotfiles
       shell: zsh -l {0}
       run: |
-        ./bin/chezmoi init --apply --source=.
+        chezmoi init --apply --source=.
     - name: Lint
       run: |
         .bin/shellcheck.bash

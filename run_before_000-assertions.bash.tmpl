@@ -4,11 +4,11 @@ set -euo pipefail
 {{ if eq .chezmoi.os "darwin" }}
 login_shell=$(dscl localhost -read "Local/Default/Users/$(whoami)" UserShell | cut -d' ' -f2)
 {{ else }}
-login_shell=$(getent passwd $(whoami) | cut -d: -f7)
+login_shell=$(getent passwd "$(whoami)" | cut -d: -f7)
 {{ end }}
 
 if [[ "$(basename "$login_shell")" != "zsh" ]]; then
-  echo "Please set shell to zsh (hint: sudo chsh $(whoami) -s $(which zsh)"
+  echo "Please set shell to zsh (hint: sudo chsh $(whoami) -s $(command -v zsh)"
   exit 1
 fi
 

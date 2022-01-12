@@ -2,6 +2,7 @@
 set -euo pipefail
 (
   set +u
+  # shellcheck source=.local/scripts/init_asdf.zsh
   . "$HOME/.local/scripts/init_asdf.zsh"
   set -u
 

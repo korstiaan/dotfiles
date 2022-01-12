@@ -28,7 +28,7 @@ function find_run_scripts() (
     -print0 | while read -r -d $'\0' file
   do
     dest="$TMPDIR/$(basename "${file%\.tmpl}")"
-    "$HOME/bin/chezmoi" execute-template < "$file" > "$dest"
+    chezmoi execute-template < "$file" > "$dest"
     echo "$dest"
   done
 )
@@ -46,7 +46,5 @@ function _shellcheck() (
 )
 
 for file in $(find_run_scripts) $(find_internals) $(find_home_scripts); do
-  _shellcheck "$file" || ret=$?
+  _shellcheck "$file"
 done
-
-exit $ret
