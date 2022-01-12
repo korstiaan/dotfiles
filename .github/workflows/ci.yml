@@ -33,11 +33,8 @@ jobs:
       run: |
         ./bin/chezmoi init --apply --source=.
     - name: Lint
-      shell: zsh -l {0}
       run: |
         .bin/shellcheck_target.bash
     - name: Smoke test
-      shell: zsh -l {0}
       run: |
-        source ~/.zshrc > /dev/null
-        .bin/smoke_test.bash
+        .bin/smoke_test.zsh
