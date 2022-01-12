@@ -8,7 +8,7 @@ jobs:
     strategy:
       matrix:
         os: [ubuntu-latest, macOS-latest]
-        shared: ["y", "n"]
+        shared: ["y"]
     steps:
     - uses: actions/checkout@v2
     - name: Install dependencies ubuntu
@@ -34,7 +34,7 @@ jobs:
         ./bin/chezmoi init --apply --source=.
     - name: Lint
       run: |
-        .bin/shellcheck_target.bash
+        .bin/shellcheck.bash
     - name: Smoke test
       run: |
         .bin/smoke_test.zsh

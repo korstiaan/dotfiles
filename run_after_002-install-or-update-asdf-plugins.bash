@@ -1,7 +1,9 @@
 #!/bin/bash
 set -euo pipefail
 (
-  set +u;. "$HOME/.local/scripts/init_asdf.zsh"; set -u
+  set +u
+  . "$HOME/.local/scripts/init_asdf.zsh"
+  set -u
 
   export GITHUB_API_TOKEN=${GITHUB_API_TOKEN:-${GITHUB_TOKEN:+$GITHUB_TOKEN}}
 
@@ -13,19 +15,19 @@ set -euo pipefail
 
   install_asdf_plugin() {
     if ! asdf plugin list | grep -q "^$1$"; then
-      asdf plugin add $1
+      asdf plugin add "$1"
     else
-      asdf plugin update $1
+      asdf plugin update "$1"
     fi
 
     local version=$2
 
-    if [ $version = 'latest' ]; then
-      version=$(asdf latest $1)
+    if [ "$version" = 'latest' ]; then
+      version=$(asdf latest "$1")
     fi
 
-    asdf install $1 $version
-    asdf global $1 $version
+    asdf install "$1" "$version"
+    asdf global "$1" "$version"
   }
 
   install_asdf_plugin ruby latest

@@ -2,7 +2,7 @@
 set -euo pipefail
 
 {{ if eq .chezmoi.os "darwin" }}
-login_shell=$(dscl localhost -read Local/Default/Users/$(whoami) UserShell | cut -d' ' -f2)
+login_shell=$(dscl localhost -read "Local/Default/Users/$(whoami)" UserShell | cut -d' ' -f2)
 {{ else }}
 login_shell=$(getent passwd $(whoami) | cut -d: -f7)
 {{ end }}
