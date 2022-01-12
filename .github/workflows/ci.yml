@@ -9,6 +9,11 @@ jobs:
       matrix:
         os: [ubuntu-latest, macOS-latest]
         shared: ["y", "n"]
+    env:
+      DOTFILES_EMAIL: info@example.com
+      DOTFILES_SHARED_SERVER: ${{ matrix.shared }}
+      DOTFILES_GPG_SIGNING_KEY: foo
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     steps:
     - uses: actions/checkout@v2
     - name: Install dependencies ubuntu
@@ -25,11 +30,6 @@ jobs:
         sh -c "$(curl -fsLS git.io/chezmoi)"
     - name: Install dotfiles
       shell: zsh -l {0}
-      env:
-        DOTFILES_EMAIL: info@example.com
-        DOTFILES_SHARED_SERVER: ${{ matrix.shared }}
-        DOTFILES_GPG_SIGNING_KEY: foo
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
         ./bin/chezmoi init --apply --source=.
     - name: Lint
