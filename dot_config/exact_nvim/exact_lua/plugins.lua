@@ -15,9 +15,24 @@ require('packer').startup({
     use 'tpope/vim-fugitive'
 
     use {
-      'preservim/nerdtree',
-      config = function ()
-        vim.cmd('autocmd VimEnter * NERDTree | wincmd p')
+      'kyazdani42/nvim-tree.lua',
+      requires = {
+        'kyazdani42/nvim-web-devicons',
+      },
+      config = function()
+        require'nvim-tree'.setup {
+          view = {
+            width = 40,
+            auto_resize = true
+          },
+          open_on_setup = true,
+          open_on_tab = true,
+          hijack_cursor = true,
+          update_focused_file = {
+            enable = true,
+            update_cwd = false,
+          }
+        }
       end
     }
 
