@@ -52,6 +52,19 @@ require('packer').startup({
       end
     }
 
+    use {
+      'nvim-treesitter/nvim-treesitter',
+      run = ":TSUpdate",
+      config = function ()
+        require'nvim-treesitter.configs'.setup {
+          ensure_installed = 'all',
+          highlight = { enable = true },
+          incremental_selection = { enable = true },
+          textobjects = { enable = true },
+        }
+      end
+    }
+
   end,
   config = {
     display = {
