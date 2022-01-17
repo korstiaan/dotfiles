@@ -35,19 +35,3 @@ vim.o.softtabstop=4   -- pressing tab is 2 spaces
 vim.o.shiftwidth=2    -- indenting is 2 spaces
 vim.o.autoindent=true
 vim.o.backspace="indent,eol,start"
-
--- -- FZF
-
--- make FZF use `rg`
-vim.fn.setenv("FZF_DEFAULT_COMMAND", 'rg --files --hidden -g "!.git"')
-
--- -- NERDTree
-
--- start on startup
-vim.cmd('autocmd VimEnter * NERDTree | wincmd p')
-
--- -- RainbowParentheses
-
--- start on startup
-vim.cmd('autocmd VimEnter * RainbowParentheses')
-

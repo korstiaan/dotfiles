@@ -3,3 +3,4 @@
 /README.md
 /.bin
 /.github
+/.config/nvim/plugin/packer_compiled.lua
