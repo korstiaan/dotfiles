@@ -21,7 +21,7 @@
 {{- $omnisharpTarBall := "" -}}
 {{- $root := . -}}
 {{- range $omnisharpReleaseAssets -}}
-  {{- if eq (.Name | lower) (ternary "omnisharp-osx.tar.gz" "omnisharp-linux.tar.gz" (eq $root.chezmoi.os "darwin")) -}}
+  {{- if eq (.Name | lower) (ternary "omnisharp-osx.tar.gz" "omnisharp-linux-x86.tar.gz" (eq $root.chezmoi.os "darwin")) -}}
     {{- $omnisharpTarBall = .BrowserDownloadURL | trim -}}
   {{- end -}}
 {{- end }}
