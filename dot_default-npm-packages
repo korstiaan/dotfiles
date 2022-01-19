@@ -1,3 +1,5 @@
 yarn
 tslint
 typescript
+vscode-langservers-extracted
+typescript-language-server

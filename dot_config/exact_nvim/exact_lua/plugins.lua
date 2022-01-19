@@ -65,6 +65,27 @@ require('packer').startup({
       end
     }
 
+    use {
+      'neovim/nvim-lspconfig',
+      config = function ()
+        local pid = vim.fn.getpid()
+        local lspconfig = require('lspconfig')
+
+        lspconfig.tsserver.setup {}
+        lspconfig.html.setup {}
+        lspconfig.solargraph.setup {}
+        lspconfig.pyright.setup {}
+        lspconfig.omnisharp.setup {
+            cmd = { vim.loop.os_homedir() .. "/.local/share/omnisharp/run", "-lsp" , "--hostPID", tostring(pid) };
+            on_exit = function(_code, _signal, _client_id)
+              -- omnisharp and/or mono servers don't always get killed, make them anyway
+              os.execute('pkill -f "hostPID ' .. tostring(pid) .. '"')
+            end
+        }
+
+      end
+    }
+
   end,
   config = {
     display = {
