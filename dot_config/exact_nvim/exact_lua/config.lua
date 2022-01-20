@@ -20,6 +20,8 @@ vim.o.ttyfast=true
 vim.o.backup=false
 vim.o.swapfile=false
 
+vim.o.completeopt="menu,menuone,noselect"
+
 -- -- searching
 vim.o.matchtime=0
 vim.o.incsearch=true        -- enable incremental search
