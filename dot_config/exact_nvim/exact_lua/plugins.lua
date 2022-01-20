@@ -37,6 +37,7 @@ require('packer').startup({
     }
 
     use 'ryanoasis/vim-devicons'
+    use 'bronson/vim-trailing-whitespace'
 
     use {
       'junegunn/rainbow_parentheses.vim',
