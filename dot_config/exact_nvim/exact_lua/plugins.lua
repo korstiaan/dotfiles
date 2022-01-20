@@ -75,6 +75,7 @@ require('packer').startup({
         lspconfig.html.setup {}
         lspconfig.solargraph.setup {}
         lspconfig.pyright.setup {}
+        lspconfig.sumneko_lua.setup {}
         lspconfig.omnisharp.setup {
             cmd = { vim.loop.os_homedir() .. "/.local/share/omnisharp/run", "-lsp" , "--hostPID", tostring(pid) };
             on_exit = function(_code, _signal, _client_id)
