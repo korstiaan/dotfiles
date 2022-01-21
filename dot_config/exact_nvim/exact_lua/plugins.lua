@@ -67,6 +67,12 @@ require('packer').startup({
     }
 
     use {
+      'akinsho/bufferline.nvim',
+      requires = 'kyazdani42/nvim-web-devicons',
+      config = function() require'plugins.bufferline-config'.config() end
+    }
+
+    use {
       'hrsh7th/nvim-cmp',
       requires= {
         'hrsh7th/cmp-nvim-lsp',

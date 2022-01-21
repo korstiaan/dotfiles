@@ -5,22 +5,7 @@ M.config = function ()
     options = {
       theme = 'codedark',
     },
-    tabline = {
-      lualine_a = {
-        {
-          'buffers',
-          buffers_color = {
-            active = 'lualine_a_insert',
-            inactive = 'lualine_a_inactive',
-          },
-        },
-      },
-      lualine_b = {},
-      lualine_c = {},
-      lualine_x = {},
-      lualine_y = {},
-      lualine_z = {}
-    },
+    tabline = {},
     sections = {
       lualine_a = {'mode'},
       lualine_b = {{ 'FugitiveHead', icon = '' }, 'diff', 'diagnostics'},
