@@ -2,7 +2,12 @@ require('packer').startup({
   function(use)
     use 'wbthomason/packer.nvim'
 
-    use 'tomasiser/vim-code-dark'
+    use {
+      'tomasiser/vim-code-dark',
+      config = function ()
+        vim.cmd('colorscheme codedark')
+      end
+    }
 
     use {
       'nvim-lualine/lualine.nvim',

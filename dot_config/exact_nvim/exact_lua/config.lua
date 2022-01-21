@@ -2,7 +2,6 @@ vim.g.mapleader=','
 
 -- -- visuals
 vim.o.termguicolors=true
-vim.cmd('colorscheme codedark')
 vim.cmd('syntax enable')
 
 -- -- misc
