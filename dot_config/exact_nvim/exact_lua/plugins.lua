@@ -7,9 +7,7 @@ require('packer').startup({
     use {
       'nvim-lualine/lualine.nvim',
       requires = { 'kyazdani42/nvim-web-devicons', opt = true },
-      config = function ()
-        require('plugins/lualine-config')
-      end
+      config = function () require'plugins.lualine-config'.config() end
     }
 
     use 'tpope/vim-fugitive'
@@ -56,14 +54,7 @@ require('packer').startup({
     use {
       'nvim-treesitter/nvim-treesitter',
       run = ":TSUpdate",
-      config = function ()
-        require'nvim-treesitter.configs'.setup {
-          ensure_installed = 'all',
-          highlight = { enable = true },
-          incremental_selection = { enable = true },
-          textobjects = { enable = true },
-        }
-      end
+      config = function () require 'plugins.treesitter-config'.config() end
     }
 
     use {
@@ -73,7 +64,7 @@ require('packer').startup({
         'L3MON4D3/LuaSnip',
         'saadparwaiz1/cmp_luasnip'
       },
-      config = function () require('plugins/nvim-cmp').config() end
+      config = function () require'plugins.nvim-cmp'.config() end
     }
 
     use {
@@ -81,26 +72,7 @@ require('packer').startup({
       requires = {
         'hrsh7th/cmp-nvim-lsp',
       },
-      config = function ()
-        local pid = vim.fn.getpid()
-        local lspconfig = require('lspconfig')
-
-        local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
-
-        lspconfig.tsserver.setup{ capabilities = capabilities }
-        lspconfig.html.setup{ capabilities = capabilities }
-        lspconfig.solargraph.setup{ capabilities = capabilities }
-        lspconfig.pyright.setup{ capabilities = capabilities }
-        lspconfig.sumneko_lua.setup{ capabilities = capabilities }
-        lspconfig.omnisharp.setup({
-          capabilities = capabilities,
-          cmd = { vim.loop.os_homedir() .. "/.local/share/omnisharp/run", "-lsp" , "--hostPID", tostring(pid) },
-          on_exit = function(_code, _signal, _client_id)
-            -- omnisharp and/or mono servers don't always get killed, make them anyway
-            os.execute('pkill -f "hostPID ' .. tostring(pid) .. '"')
-          end
-        })
-      end
+      config = function () require'plugins.lsp-config'.config() end
     }
   end,
   config = {
