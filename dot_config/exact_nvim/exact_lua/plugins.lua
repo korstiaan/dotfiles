@@ -49,11 +49,15 @@ require('packer').startup({
       end
     }
 
+    use {'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
+
     use {
-      'junegunn/fzf.vim',
-      config = function ()
-        vim.fn.setenv("FZF_DEFAULT_COMMAND", 'rg --files --hidden -g "!.git"')
-      end
+      'nvim-telescope/telescope.nvim',
+      requires = {
+        'nvim-lua/plenary.nvim',
+        'nvim-telescope/telescope-fzf-native.nvim',
+      },
+      config = function () require'plugins.telescope-config'.config() end
     }
 
     use {
