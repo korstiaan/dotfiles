@@ -14,7 +14,7 @@ M.config = function ()
       lualine_y = {'progress'},
       lualine_z = {'location'}
     },
-    extensions = {}
+    extensions = {'nvim-tree'}
   }
 end
 
