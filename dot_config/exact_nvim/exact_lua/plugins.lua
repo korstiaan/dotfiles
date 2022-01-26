@@ -34,6 +34,9 @@ require('packer').startup({
           update_focused_file = {
             enable = true,
             update_cwd = false,
+          },
+          diagnostics = {
+            enable = true,
           }
         }
       end
