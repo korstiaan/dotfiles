@@ -19,8 +19,13 @@ export EDITOR=nvim
 
 bindkey "^A" beginning-of-line
 bindkey "^E" end-of-line
-bindkey '^[[1;9C' forward-word
-bindkey '^[[1;9D' backward-word
+# iterm
+bindkey "\e\e[D" backward-word
+bindkey "\e\e[C" forward-word
+
+# kitty
+bindkey "\e[1;3D" backward-word
+bindkey "\e[1;3C" forward-word
 
 # shellcheck source=.local/share/zinit/zinit.git/zinit.zsh disable=SC1094
 source "$HOME/.local/share/zinit/zinit.git/zinit.zsh"
