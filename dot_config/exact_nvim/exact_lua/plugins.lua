@@ -43,6 +43,13 @@ require('packer').startup({
       end
     }
 
+    use {
+      'j-hui/fidget.nvim',
+      config = function ()
+        require"fidget".setup{}
+      end
+    }
+
     use 'ryanoasis/vim-devicons'
     use 'bronson/vim-trailing-whitespace'
 
