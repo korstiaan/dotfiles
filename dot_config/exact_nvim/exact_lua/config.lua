@@ -21,6 +21,8 @@ vim.o.swapfile=false
 
 vim.o.completeopt="menu,menuone,noselect"
 
+vim.o.clipboard="unnamed" -- use system clipboard
+
 -- -- searching
 vim.o.matchtime=0
 vim.o.incsearch=true        -- enable incremental search
