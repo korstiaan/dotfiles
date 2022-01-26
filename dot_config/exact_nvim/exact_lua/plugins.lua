@@ -3,9 +3,10 @@ require('packer').startup({
     use 'wbthomason/packer.nvim'
 
     use {
-      'tomasiser/vim-code-dark',
+      'Mofiqul/vscode.nvim',
       config = function ()
-        vim.cmd('colorscheme codedark')
+        vim.g.vscode_style = "dark"
+        vim.cmd('colorscheme vscode')
       end
     }
 

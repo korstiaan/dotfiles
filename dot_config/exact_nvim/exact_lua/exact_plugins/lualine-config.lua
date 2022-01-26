@@ -3,7 +3,7 @@ local M = {}
 M.config = function ()
   require('lualine').setup {
     options = {
-      theme = 'codedark',
+      theme = 'vscode',
     },
     tabline = {},
     sections = {
