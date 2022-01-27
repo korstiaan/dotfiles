@@ -103,6 +103,11 @@ require('packer').startup({
         require("indent_blankline").setup { }
       end
     }
+
+    use {
+      'APZelos/blamer.nvim',
+      config = function () require'plugins.blamer-config'.config() end
+    }
   end,
   config = {
     display = {
