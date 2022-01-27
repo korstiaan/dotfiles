@@ -2,6 +2,7 @@ local M = {}
 
 M.config = function ()
   local cmp = require'cmp'
+  local lspkind = require('lspkind')
 
   cmp.setup({
     snippet = {
@@ -23,7 +24,16 @@ M.config = function ()
     sources = cmp.config.sources({
       { name = 'nvim_lsp' },
       { name = 'luasnip' },
-    })
+    }),
+    formatting = {
+      format = lspkind.cmp_format({
+        with_text = true,
+        menu = {
+          nvim_lsp = "[LSP]",
+          luasnip = "[LuaSnip]"
+        }
+      }),
+    },
   })
 end
 
