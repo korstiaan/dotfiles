@@ -53,13 +53,6 @@ require('packer').startup({
     use 'ryanoasis/vim-devicons'
     use 'bronson/vim-trailing-whitespace'
 
-    use {
-      'junegunn/rainbow_parentheses.vim',
-      config = function ()
-        vim.cmd('autocmd VimEnter * RainbowParentheses')
-      end
-    }
-
     use {'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
 
     use {
@@ -73,6 +66,9 @@ require('packer').startup({
 
     use {
       'nvim-treesitter/nvim-treesitter',
+      requires = {
+        'p00f/nvim-ts-rainbow'
+      },
       run = ":TSUpdate",
       config = function () require 'plugins.treesitter-config'.config() end
     }

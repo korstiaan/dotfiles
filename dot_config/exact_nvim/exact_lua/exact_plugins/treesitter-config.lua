@@ -6,6 +6,11 @@ M.config = function ()
     highlight = { enable = true },
     incremental_selection = { enable = true },
     textobjects = { enable = true },
+    rainbow = {
+      enable = true,
+      extended_mode = false,
+      max_file_lines = nil
+    }
   }
 end
 
