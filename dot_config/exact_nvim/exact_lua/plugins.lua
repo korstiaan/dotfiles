@@ -107,6 +107,7 @@ require('packer').startup({
 
     use {
       'APZelos/blamer.nvim',
+      after = "vscode.nvim",
       config = function () require'plugins.blamer-config'.config() end
     }
   end,
