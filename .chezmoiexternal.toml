@@ -17,11 +17,10 @@
     stripComponents = 1
     refreshPeriod = "168h"
 {{- $omnisharpReleaseAssets := (gitHubLatestRelease "OmniSharp/omnisharp-roslyn").Assets -}}
-{{- $omnisharpAssetsName := "omnisharp-osx.tar.gz" -}}
 {{- $omnisharpTarBall := "" -}}
 {{- $root := . -}}
 {{- range $omnisharpReleaseAssets -}}
-  {{- if eq (.Name | lower) (ternary "omnisharp-osx.tar.gz" "omnisharp-linux-x86.tar.gz" (eq $root.chezmoi.os "darwin")) -}}
+  {{- if eq (.Name | lower) (ternary "omnisharp-osx.tar.gz" "omnisharp-linux-x64.tar.gz" (eq $root.chezmoi.os "darwin")) -}}
     {{- $omnisharpTarBall = .BrowserDownloadURL | trim -}}
   {{- end -}}
 {{- end }}
