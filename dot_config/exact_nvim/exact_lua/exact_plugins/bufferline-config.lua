@@ -33,12 +33,10 @@ M.config = function ()
         guibg = { attribute = "bg", highlight = "StatusLine"}
       },
       buffer_visible = {
-        gui = "",
         guifg = { attribute = "fg", highlight = "Normal" },
         guibg = { attribute = "bg", highlight = "Normal" }
       },
       buffer_selected = {
-        gui = "",
         guifg = { attribute = "fg", highlight = "Normal" },
         guibg = { attribute = "bg", highlight = "Normal" }
       },
